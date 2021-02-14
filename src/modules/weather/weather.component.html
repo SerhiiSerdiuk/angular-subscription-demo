@@ -1,0 +1,15 @@
+<h1>Current Weather</h1>
+<div>
+  <button (click)="updateCurrentWeather('Kharkiv')">Kharkiv</button>
+</div>
+
+<ng-container *ngIf="currentWeather$ | async as currentWeather">
+  <ng-container *ngIf="state$ | async as state">
+    <pre *ngIf="!state.loading; else loadingSpinner">
+      {{ currentWeather | json }}
+    </pre>
+    <ng-template #loadingSpinner>
+      <div class="loading-spinner"></div>
+    </ng-template>
+  </ng-container>
+</ng-container>
