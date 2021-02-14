@@ -23,7 +23,7 @@ export class WeatherService {
         switchMap((cityName: string) =>
           this.getCurrentWeather(cityName).pipe(
             finalize(() => {
-              this.state.next({ loading: false });
+              this.updateState({ loading: false });
             })
           )
         )
@@ -36,9 +36,16 @@ export class WeatherService {
     );
   }
 
+  public updateState(state: Record<string, any>): void {
+    this.state.next({
+      ...this.state.getValue(),
+      ...state,
+    });
+  }
+
   public fetchCurrentWeather(cityName: string): void {
     if (cityName) {
-      this.state.next({ loading: true });
+      this.updateState({ loading: true });
       this.triggerFetchingCurrentWeather.next(cityName);
     }
   }

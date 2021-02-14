@@ -1,6 +1,7 @@
 <h1>Current Weather</h1>
 <div>
   <button (click)="updateCurrentWeather('Kharkiv')">Kharkiv</button>
+  <button (click)="updateCurrentWeather('Kyiv')">Kyiv</button>
 </div>
 
 <ng-container *ngIf="currentWeather$ | async as currentWeather">
